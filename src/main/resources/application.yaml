@@ -6,4 +6,4 @@ spring:
     password: root
     url: "jdbc:mysql://localhost:3306/product_db"
 server:
-  port: 8052
+  port: 8888
