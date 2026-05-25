@@ -2,6 +2,7 @@ package com.nkh.productservice.controller;
 
 import com.nkh.productservice.dto.BaseResponse;
 import com.nkh.productservice.dto.request.CreateProductReq;
+import com.nkh.productservice.dto.request.LockProductReq;
 import com.nkh.productservice.dto.request.ProductFilter;
 import com.nkh.productservice.entity.Product;
 import com.nkh.productservice.service.ProductService;
@@ -9,10 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +31,12 @@ public class ProductController {
     public BaseResponse<List<Product>> search(@RequestBody ProductFilter productFilter){
         List<Product> products = productService.search(productFilter);
         return BaseResponse.success(products);
+    }
+
+    @PutMapping("/lock")
+    public BaseResponse<Boolean> lock(@RequestBody @Valid LockProductReq request){
+         productService.lock(request);
+        return BaseResponse.success(true);
     }
 
 }
