@@ -9,6 +9,8 @@ import com.nkh.productservice.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,8 @@ public class ProductController {
     @PostMapping()
     public BaseResponse<Product> create(@RequestBody @Valid CreateProductReq request){
         return BaseResponse.success(productService.create(request));
+//        org.apache.kafka.common.serialization.StringDeserializer
+//        org.springframework.kafka.support.serializer.JsonDeserializer
     }
 
     @PostMapping("/search")
