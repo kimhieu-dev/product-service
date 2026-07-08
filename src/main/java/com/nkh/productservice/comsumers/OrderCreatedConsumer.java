@@ -26,7 +26,6 @@ public class OrderCreatedConsumer {
     private final ObjectMapper objectMapper;
     private final KafkaTemplate<String,ProductLockedEvent> kafkaTemplate;
 
-
     @KafkaListener(topics = "order_created")
     @RetryableTopic(
             attempts = "4",
